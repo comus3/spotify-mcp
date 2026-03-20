@@ -1,0 +1,12 @@
+# Optional: join an existing Docker network (e.g. Traefik / NPM) and do not publish ports on the host.
+# Replace `proxy` with your external network name.
+# Usage: docker compose -f docker-compose.yml -f docker-compose.homelab.example.yml up -d --build
+services:
+  spotifymcp:
+    ports: []
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

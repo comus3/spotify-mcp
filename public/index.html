@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify MCP — Setup</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Spotify MCP</h1>
+    <p class="subtitle">Spotify MCP server for Claude · <span id="server-url"></span></p>
+  </header>
+
+  <main>
+    <!-- Auth status -->
+    <section class="card" id="auth-card">
+      <h2>Spotify Connection</h2>
+      <div id="auth-status" class="status-badge loading">Checking…</div>
+      <div id="auth-actions">
+        <button id="btn-login" class="btn btn-primary" onclick="login()" hidden>
+          Connect to Spotify
+        </button>
+        <button id="btn-logout" class="btn btn-danger" onclick="logout()" hidden>
+          Disconnect
+        </button>
+      </div>
+      <p id="auth-message" class="hint"></p>
+    </section>
+
+    <!-- MCP config -->
+    <section class="card" id="config-card">
+      <h2>Claude Configuration</h2>
+      <p class="hint">Add this to your Claude Desktop or Claude Code MCP config:</p>
+
+      <div class="tab-bar">
+        <button class="tab active" onclick="switchTab('claude-desktop')">Claude Desktop</button>
+        <button class="tab" onclick="switchTab('claude-code')">Claude Code</button>
+      </div>
+
+      <div id="tab-claude-desktop" class="tab-content">
+        <p class="hint"><code>~/Library/Application Support/Claude/claude_desktop_config.json</code>
+          (macOS) · <code>%APPDATA%\Claude\claude_desktop_config.json</code> (Windows)</p>
+        <div class="code-block">
+          <pre id="config-desktop"></pre>
+          <button class="copy-btn" onclick="copyConfig('config-desktop')">Copy</button>
+        </div>
+      </div>
+
+      <div id="tab-claude-code" class="tab-content" hidden>
+        <p class="hint">Run in your project or <code>~/.claude/</code>:</p>
+        <div class="code-block">
+          <pre id="config-code-cmd"></pre>
+          <button class="copy-btn" onclick="copyConfig('config-code-cmd')">Copy</button>
+        </div>
+        <p class="hint">Or add manually to <code>.claude/settings.json</code>:</p>
+        <div class="code-block">
+          <pre id="config-code-json"></pre>
+          <button class="copy-btn" onclick="copyConfig('config-code-json')">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section class="card">
+      <h2>Available MCP Tools</h2>
+      <div class="tools-grid">
+        <div class="tool-group">
+          <h3>Player</h3>
+          <ul>
+            <li>get_playback_state</li>
+            <li>get_currently_playing</li>
+            <li>play</li>
+            <li>pause</li>
+            <li>next_track</li>
+            <li>previous_track</li>
+            <li>seek</li>
+            <li>set_volume</li>
+            <li>set_shuffle</li>
+            <li>set_repeat</li>
+            <li>get_devices</li>
+            <li>transfer_playback</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Queue & Search</h3>
+          <ul>
+            <li>get_queue</li>
+            <li>add_to_queue</li>
+            <li>search</li>
+            <li>get_track / get_tracks</li>
+            <li>get_recommendations</li>
+            <li>get_available_genre_seeds</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Library</h3>
+          <ul>
+            <li>get_saved_tracks</li>
+            <li>save_tracks</li>
+            <li>remove_saved_tracks</li>
+            <li>check_saved_tracks</li>
+            <li>get_saved_albums</li>
+            <li>save_albums</li>
+            <li>remove_saved_albums</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Artists & Albums</h3>
+          <ul>
+            <li>get_artist</li>
+            <li>get_artist_top_tracks</li>
+            <li>get_artist_albums</li>
+            <li>get_related_artists</li>
+            <li>get_album</li>
+            <li>get_album_tracks</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>Playlists</h3>
+          <ul>
+            <li>get_user_playlists</li>
+            <li>get_playlist</li>
+            <li>get_playlist_tracks</li>
+            <li>create_playlist</li>
+            <li>add_tracks_to_playlist</li>
+            <li>remove_tracks_from_playlist</li>
+          </ul>
+        </div>
+        <div class="tool-group">
+          <h3>User & Browse</h3>
+          <ul>
+            <li>get_user_profile</li>
+            <li>get_top_tracks</li>
+            <li>get_top_artists</li>
+            <li>get_recently_played</li>
+            <li>get_featured_playlists</li>
+            <li>get_categories</li>
+            <li>get_category_playlists</li>
+            <li>get_new_releases</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

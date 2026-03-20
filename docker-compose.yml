@@ -1,0 +1,18 @@
+name: spotifymcp
+
+services:
+  spotifymcp:
+    build: .
+    container_name: spotifymcp
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      TZ: ${TZ:-UTC}
+    env_file:
+      - .env
+    volumes:
+      - spotifymcp_data:/app/data
+
+volumes:
+  spotifymcp_data:

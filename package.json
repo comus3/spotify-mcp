@@ -1,0 +1,41 @@
+{
+  "name": "spotifymcp",
+  "version": "1.0.0",
+  "description": "Self-hosted MCP server: Spotify Web API tools for Claude and other MCP clients (OAuth PKCE, Streamable HTTP)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/comus3/spotify-mcp.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "spotify",
+    "claude",
+    "oauth",
+    "pkce"
+  ],
+  "main": "dist/server.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "morgan": "^1.10.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
